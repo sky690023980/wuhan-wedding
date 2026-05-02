@@ -12,16 +12,18 @@
 <nav class="navbar">
   <div class="nav-inner">
     <a href="../index.html" class="logo">💍 武汉婚庆目录</a>
-    <div class="nav-links">
+    <div class="nav-links" id="navLinks">
       <a href="../index.html">首页</a>
-      <a href="category.html?cat=photography">婚庆摄影</a>
-      <a href="category.html?cat=make-up">婚礼化妆</a>
-      <a href="category.html?cat=venue">婚礼场地</a>
       <a href="category.html?cat=planner">婚庆策划</a>
-      <a href="category.html?cat=host">婚礼主持</a>
+      <a href="category.html?cat=photography">婚庆摄影</a>
+      <a href="category.html?cat=hotel">婚宴酒店</a>
+      <a href="category.html?cat=venue">婚礼场地</a>
+      <a href="category.html?cat=makeup">婚礼化妆</a>
+      <a href="guide.html">备婚攻略</a>
     </div>
     <div class="nav-actions">
-      <a href="submit.html" class="btn-outline">商家入驻</a>
+      <a href="submit.html" class="btn-outline">免费入驻</a>
+      <button class="hamburger" onclick="toggleMenu()">☰</button>
     </div>
   </div>
 </nav>
@@ -36,26 +38,24 @@
 <section class="filter-bar">
   <div class="container" style="display:flex;gap:10px;flex-wrap:wrap;align-items:center;padding:0;">
     <select id="filter-cat" class="search-select" onchange="applyFilters()">
-      <option value="">全部类别</option>
-      <option value="photography">婚庆摄影</option>
-      <option value="make-up">婚礼化妆</option>
-      <option value="venue">婚礼场地</option>
+      <option value="">全部分类</option>
       <option value="planner">婚庆策划</option>
+      <option value="photography">婚庆摄影</option>
+      <option value="makeup">婚礼化妆</option>
+      <option value="venue">婚礼场地</option>
+      <option value="hotel">婚宴酒店</option>
       <option value="host">婚礼主持</option>
       <option value="dress">婚纱礼服</option>
-      <option value="flower">婚礼花艺</option>
     </select>
     <select id="filter-district" class="search-select" onchange="applyFilters()">
       <option value="">全部区域</option>
-      <option value="武昌区">武昌区</option>
-      <option value="汉口区">汉口区</option>
-      <option value="汉阳区">汉阳区</option>
-      <option value="青山区">青山区</option>
-      <option value="洪山区">洪山区</option>
-      <option value="江夏区">江夏区</option>
-      <option value="硚口区">硚口区</option>
       <option value="江汉区">江汉区</option>
+      <option value="武昌区">武昌区</option>
+      <option value="洪山区">洪山区</option>
       <option value="江岸区">江岸区</option>
+      <option value="汉阳区">汉阳区</option>
+      <option value="硚口区">硚口区</option>
+      <option value="东西湖区">东西湖区</option>
     </select>
     <input type="text" id="filter-q" class="search-input" placeholder="搜索商家名称..." onkeyup="if(event.key==='Enter')applyFilters()">
     <button class="btn-search" onclick="applyFilters()">筛选</button>
@@ -71,7 +71,51 @@
   </div>
 </section>
 
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <h3>💍 武汉婚庆目录</h3>
+        <p>专注于武汉本地婚庆服务商的真实评价平台，帮助新人找到靠谱服务商。</p>
+      </div>
+      <div>
+        <h4>服务类别</h4>
+        <ul>
+          <li><a href="category.html?cat=planner">婚庆策划</a></li>
+          <li><a href="category.html?cat=photography">婚庆摄影</a></li>
+          <li><a href="category.html?cat=hotel">婚宴酒店</a></li>
+          <li><a href="category.html?cat=venue">婚礼场地</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>婚礼攻略</h4>
+        <ul>
+          <li><a href="guide.html">备婚全攻略</a></li>
+          <li><a href="#">酒店选择指南</a></li>
+          <li><a href="#">摄影避坑指南</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>关于我们</h4>
+        <ul>
+          <li><a href="#">关于本站</a></li>
+          <li><a href="submit.html">商家入驻</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2024-2026 武汉婚庆目录 · 用心服务每一场婚礼</p>
+    </div>
+  </div>
+</footer>
+
 <script src="../js/app.js"></script>
-<script>loadCategoryPage();</script>
+<script>
+  loadCategoryPage();
+  function toggleMenu() {
+    const nl = document.getElementById('navLinks');
+    nl.style.display = nl.style.display === 'flex' ? 'none' : 'flex';
+  }
+</script>
 </body>
 </html>

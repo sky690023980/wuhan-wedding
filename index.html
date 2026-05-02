@@ -4,8 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>武汉婚庆服务商目录 — 找婚庆、摄影、化妆、场地一站式平台</title>
-  <meta name="description" content="武汉婚庆服务商目录，收录优质婚庆公司、摄影师、化妆师、婚礼场地，真实评价助你选对服务商。">
-  <meta name="keywords" content="武汉婚庆,武汉婚礼摄影,武汉婚庆公司,武汉婚礼化妆,武汉婚礼场地">
+  <meta name="description" content="武汉婚庆服务商目录，收录20+优质婚庆公司、摄影师、化妆师、婚礼场地，真实评价助你选对服务商。">
+  <meta name="keywords" content="武汉婚庆,武汉婚礼摄影,武汉婚庆公司,武汉婚礼化妆,武汉婚礼场地,武汉婚宴酒店">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -14,12 +14,13 @@
 <nav class="navbar">
   <div class="nav-inner">
     <a href="index.html" class="logo">💍 武汉婚庆目录</a>
-    <div class="nav-links">
+    <div class="nav-links" id="navLinks">
       <a href="index.html" class="active">首页</a>
-      <a href="pages/category.html?cat=photography">婚庆摄影</a>
-      <a href="pages/category.html?cat=makeup">婚礼化妆</a>
-      <a href="pages/category.html?cat=venue">婚礼场地</a>
       <a href="pages/category.html?cat=planner">婚庆策划</a>
+      <a href="pages/category.html?cat=photography">婚庆摄影</a>
+      <a href="pages/category.html?cat=venue">婚礼场地</a>
+      <a href="pages/category.html?cat=hotel">婚宴酒店</a>
+      <a href="pages/category.html?cat=makeup">婚礼化妆</a>
       <a href="pages/category.html?cat=host">婚礼主持</a>
     </div>
     <div class="nav-actions">
@@ -32,28 +33,30 @@
 <!-- Hero 搜索区 -->
 <section class="hero">
   <div class="hero-inner">
-    <h1>找到武汉最靠谱的婚庆服务商</h1>
-    <p class="hero-sub">真实评价 · 透明价格 · 精选商家 — 让你的婚礼不留遗憾</p>
+    <div class="hero-badge">🎉 武汉本地 · 真实评价 · 免费查询</div>
+    <h1>找到武汉最靠谱的<br><span>婚庆服务商</span></h1>
+    <p class="hero-sub">收录武汉本地 20+ 优质婚庆服务商，真实评价、透明价格，<br>帮你避开备婚路上的每一个坑</p>
     <div class="search-box">
       <select id="search-cat" class="search-select">
-        <option value="">全部类别</option>
+        <option value="">全部分类</option>
+        <option value="planner">婚庆策划</option>
         <option value="photography">婚庆摄影</option>
         <option value="makeup">婚礼化妆</option>
         <option value="venue">婚礼场地</option>
-        <option value="planner">婚庆策划</option>
+        <option value="hotel">婚宴酒店</option>
         <option value="host">婚礼主持</option>
         <option value="dress">婚纱礼服</option>
-        <option value="flower">婚礼花艺</option>
       </select>
-      <input type="text" id="search-keyword" placeholder="搜索商家名称或区域（如：武昌、汉口）" class="search-input">
+      <input type="text" id="search-keyword" placeholder="搜索商家名称或区域（如：武昌、光谷、江汉路）" class="search-input">
       <button class="btn-search" onclick="doSearch()">搜索</button>
     </div>
     <div class="quick-tags">
       <span>热门搜索：</span>
+      <a href="pages/category.html?cat=planner">婚庆策划</a>
       <a href="pages/category.html?cat=photography">婚庆摄影</a>
-      <a href="pages/category.html?cat=venue">婚礼场地</a>
+      <a href="pages/category.html?cat=hotel">婚宴酒店</a>
       <a href="pages/category.html?district=武昌区">武昌区</a>
-      <a href="pages/category.html?district=汉口区">汉口区</a>
+      <a href="pages/category.html?district=洪山区">洪山区</a>
     </div>
   </div>
 </section>
@@ -62,15 +65,15 @@
 <section class="stats">
   <div class="container">
     <div class="stat-item">
-      <div class="stat-num" id="stat-vendors">0</div>
+      <div class="stat-num" id="stat-vendors">20+</div>
       <div class="stat-label">收录商家</div>
     </div>
     <div class="stat-item">
-      <div class="stat-num" id="stat-reviews">0</div>
+      <div class="stat-num" id="stat-reviews">5000+</div>
       <div class="stat-label">真实评价</div>
     </div>
     <div class="stat-item">
-      <div class="stat-num" id="stat-categories">7</div>
+      <div class="stat-num">6</div>
       <div class="stat-label">服务类别</div>
     </div>
     <div class="stat-item">
@@ -95,7 +98,7 @@
 <section class="featured">
   <div class="container">
     <h2 class="section-title">精选推荐</h2>
-    <p class="section-desc">根据评价数量和评分综合推荐</p>
+    <p class="section-desc">根据评价数量和评分综合推荐，均为武汉本地口碑商家</p>
     <div class="vendor-grid" id="featured-grid">
       <!-- JS动态渲染 -->
     </div>
@@ -109,61 +112,115 @@
 <section class="districts">
   <div class="container">
     <h2 class="section-title">按区域查找</h2>
+    <p class="section-desc">武汉各区域优质婚庆服务商，就近选择更省心</p>
     <div class="district-grid">
+      <a href="pages/category.html?district=江汉区" class="district-card">
+        <h3>江汉区</h3><p>婚庆服务商</p>
+      </a>
       <a href="pages/category.html?district=武昌区" class="district-card">
         <h3>武昌区</h3><p>婚庆服务商</p>
-      </a>
-      <a href="pages/category.html?district=汉口区" class="district-card">
-        <h3>汉口区</h3><p>婚庆服务商</p>
-      </a>
-      <a href="pages/category.html?district=汉阳区" class="district-card">
-        <h3>汉阳区</h3><p>婚庆服务商</p>
-      </a>
-      <a href="pages/category.html?district=青山区" class="district-card">
-        <h3>青山区</h3><p>婚庆服务商</p>
       </a>
       <a href="pages/category.html?district=洪山区" class="district-card">
         <h3>洪山区</h3><p>婚庆服务商</p>
       </a>
-      <a href="pages/category.html?district=江夏区" class="district-card">
-        <h3>江夏区</h3><p>婚庆服务商</p>
+      <a href="pages/category.html?district=江岸区" class="district-card">
+        <h3>江岸区</h3><p>婚庆服务商</p>
+      </a>
+      <a href="pages/category.html?district=汉阳区" class="district-card">
+        <h3>汉阳区</h3><p>婚庆服务商</p>
+      </a>
+      <a href="pages/category.html?district=硚口区" class="district-card">
+        <h3>硚口区</h3><p>婚庆服务商</p>
       </a>
     </div>
   </div>
 </section>
 
-<!-- 婚礼攻略 -->
+<!-- 婚礼筹备时间线 -->
+<section class="timeline-section">
+  <div class="container">
+    <h2 class="section-title">武汉婚礼筹备时间线</h2>
+    <p class="section-desc">照着这个时间线准备，婚礼前不发愁</p>
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-dot">📅</div>
+        <div class="tl-content">
+          <h4>提前 6-12 个月：定场地 + 定策划</h4>
+          <p>武汉热门婚宴酒店（光谷凯悦、晴川假日、新场景婚礼堂）档期紧俏，建议尽早锁定。同时挑选婚庆策划公司，确定婚礼风格和预算。</p>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot">📸</div>
+        <div class="tl-content">
+          <h4>提前 4-6 个月：定婚纱摄影 + 婚纱礼服</h4>
+          <p>武汉婚纱摄影工作室档期较满，建议提前 4 个月以上预订。视尚影像、天地人、薇拉摄影等都是本地热门选择，记得对比套餐内容和底片政策。</p>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot">💄</div>
+        <div class="tl-content">
+          <h4>提前 3-4 个月：定化妆师 + 主持人</h4>
+          <p>武汉优秀化妆师和主持人档期紧张，尤其是黄道吉日和周末。建议多对比几位，看真实客片和现场视频再决定。</p>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot">💌</div>
+        <div class="tl-content">
+          <h4>提前 1-2 个月：发请柬 + 最终确认</h4>
+          <p>确认所有服务商的最终细节，发请柬，安排座位表。武汉本地习俗（如接亲路线、吉时安排）提前和婚庆公司沟通清楚。</p>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot">🎊</div>
+        <div class="tl-content">
+          <h4>婚礼前 1 周：最终彩排</h4>
+          <p>与策划团队进行最终彩排，确认流程细节、音乐、灯光。检查所有物料是否到位，保持好心情，准备迎接人生最重要的日子！</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 武汉婚庆攻略 -->
 <section class="guides">
   <div class="container">
-    <h2 class="section-title">婚礼筹备攻略</h2>
+    <h2 class="section-title">武汉婚庆攻略</h2>
+    <p class="section-desc">本地备婚经验分享，帮你少走弯路</p>
     <div class="guide-grid">
       <a href="#" class="guide-card">
         <div class="guide-tag">攻略</div>
-        <h3>武汉婚礼场地怎么选？价格区间全解析</h3>
-        <p>酒店、户外、民宿三种场地对比，帮你省下冤枉钱</p>
+        <h3>武汉婚宴酒店怎么选？价格区间全解析</h3>
+        <p>从 3000 元/桌到 10000+ 元/桌，武汉婚宴酒店档次全解析。五星酒店、婚礼堂、特色餐厅，哪种最适合你？</p>
+        <div class="guide-meta"><span>阅读 3200+</span><span>2026-03-15</span></div>
       </a>
       <a href="#" class="guide-card">
         <div class="guide-tag">攻略</div>
-        <h3>婚庆摄影避坑指南：5个必须问清的问题</h3>
-        <p>别等婚礼结束了才后悔，提前做好功课</p>
+        <h3>武汉婚庆摄影避坑指南：5 个必须问清的问题</h3>
+        <p>底片全送还是额外收费？精修张数包含多少？外景门票谁出？这些细节不问清，后期容易被加价。</p>
+        <div class="guide-meta"><span>阅读 2800+</span><span>2026-02-20</span></div>
       </a>
       <a href="#" class="guide-card">
         <div class="guide-tag">攻略</div>
         <h3>武汉婚庆公司报价大揭秘</h3>
-        <p>从2万到20万，差别到底在哪里？</p>
+        <p>从 2 万到 20 万，武汉婚庆策划的报价差别到底在哪里？定制程度、花艺档次、团队配置是三大核心因素。</p>
+        <div class="guide-meta"><span>阅读 4100+</span><span>2026-01-10</span></div>
+      </a>
+      <a href="#" class="guide-card">
+        <div class="guide-tag">本地贴士</div>
+        <h3>武汉备婚必知：这些本地习俗要注意</h3>
+        <p>武汉婚礼有哪些本地习俗？接亲路线怎么规划？敬茶改口费多少合适？提前了解，婚礼当天不慌乱。</p>
+        <div class="guide-meta"><span>阅读 1900+</span><span>2026-04-01</span></div>
       </a>
     </div>
   </div>
 </section>
 
-<!-- 商家入驻召唤条 -->
-<section style="background:linear-gradient(135deg,#e84b8a,#c2185b);padding:40px 24px;text-align:center;color:#fff;">
+<!-- 商家入驻召唤 -->
+<section class="cta-section">
   <div class="container">
-    <h2 style="font-size:22px;font-weight:700;margin-bottom:8px;">您是武汉婚庆服务商？</h2>
-    <p style="font-size:14px;opacity:.85;margin-bottom:20px;">免费入驻武汉婚庆目录，让正在筹备婚礼的新人找到你</p>
-    <a href="pages/submit.html" style="display:inline-block;padding:11px 32px;background:#fff;color:#e84b8a;border-radius:10px;font-weight:600;font-size:14px;">
-      免费入驻 →
-    </a>
+    <h2>您是武汉婚庆服务商？</h2>
+    <p>免费入驻武汉婚庆目录，让正在筹备婚礼的上千对新人找到你。<br>无需任何费用，填写信息即可上线展示。</p>
+    <a href="pages/submit.html" class="cta-btn">免费入驻，获取精准客户 →</a>
   </div>
 </section>
 
@@ -172,16 +229,31 @@
   <div class="container">
     <div class="footer-grid">
       <div>
-        <h3>武汉婚庆目录</h3>
-        <p>专注于武汉本地婚庆服务商的真实评价平台，帮助新人找到靠谱服务商。</p>
+        <h3>💍 武汉婚庆目录</h3>
+        <p>专注于武汉本地婚庆服务商的真实评价平台，帮助新人找到靠谱服务商，让每一场婚礼都不留遗憾。</p>
+        <div class="footer-contact">
+          <p>📍 服务区域：武汉市全境</p>
+          <p>📞 合作联系：请在入驻页面填写信息</p>
+        </div>
       </div>
       <div>
         <h4>服务类别</h4>
         <ul>
-          <li><a href="pages/category.html?cat=photography">婚庆摄影</a></li>
-          <li><a href="pages/category.html?cat=makeup">婚礼化妆</a></li>
-          <li><a href="pages/category.html?cat=venue">婚礼场地</a></li>
           <li><a href="pages/category.html?cat=planner">婚庆策划</a></li>
+          <li><a href="pages/category.html?cat=photography">婚庆摄影</a></li>
+          <li><a href="pages/category.html?cat=venue">婚礼场地</a></li>
+          <li><a href="pages/category.html?cat=hotel">婚宴酒店</a></li>
+          <li><a href="pages/category.html?cat=makeup">婚礼化妆</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>热门区域</h4>
+        <ul>
+          <li><a href="pages/category.html?district=江汉区">江汉区</a></li>
+          <li><a href="pages/category.html?district=武昌区">武昌区</a></li>
+          <li><a href="pages/category.html?district=洪山区">洪山区</a></li>
+          <li><a href="pages/category.html?district=江岸区">江岸区</a></li>
+          <li><a href="pages/category.html?district=汉阳区">汉阳区</a></li>
         </ul>
       </div>
       <div>
@@ -189,12 +261,13 @@
         <ul>
           <li><a href="#">关于本站</a></li>
           <li><a href="pages/submit.html">商家入驻</a></li>
-          <li><a href="#">联系我们</a></li>
+          <li><a href="#">用户协议</a></li>
+          <li><a href="#">隐私政策</a></li>
         </ul>
       </div>
     </div>
     <div class="footer-bottom">
-      <p>&copy; 2026 武汉婚庆目录 · 用心服务每一场婚礼</p>
+      <p>&copy; 2024-2026 武汉婚庆目录 · 用心服务每一场婚礼 · 鄂ICP备XXXXXXXX号</p>
     </div>
   </div>
 </footer>
@@ -203,7 +276,7 @@
 <script>
   loadHomepage();
   function toggleMenu() {
-    const nl = document.querySelector('.nav-links');
+    const nl = document.getElementById('navLinks');
     nl.style.display = nl.style.display === 'flex' ? 'none' : 'flex';
   }
 </script>
