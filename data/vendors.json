@@ -1,0 +1,45 @@
+[
+  {
+    "id": 1,
+    "name": "武汉天地人婚纱摄影",
+    "category": "photography",
+    "district": "江汉区",
+    "address": "武汉市江汉区建设大道111号",
+    "phone": "13812345678",
+    "price": "¥4999起",
+    "priceNum": 4999,
+    "rating": 4.9,
+    "reviews": 312,
+    "tags": [
+      "26000平美学馆",
+      "专业团队",
+      "风格多样"
+    ],
+    "featured": true,
+    "verified": true,
+    "desc": "拥有26000平全新美学馆，专业婚纱摄影机构，一对一服务，多种风格任你选择。",
+    "website": "tdrhunsha.com",
+    "years": "10年以上"
+  },
+  {
+    "id": 2,
+    "name": "视尚影像婚纱摄影",
+    "category": "photography",
+    "district": "洪山区",
+    "address": "武汉市洪山区街道口广场A栋2楼",
+    "phone": "13987654321",
+    "price": "¥3599起",
+    "priceNum": 3599,
+    "rating": 4.7,
+    "reviews": 175,
+    "tags": [
+      "一对一服务",
+      "旅拍",
+      "底片全送"
+    ],
+    "featured": false,
+    "verified": true,
+    "desc": "专注一对一婚纱摄影，一天只拍一对，旅拍服务覆盖武汉周边，底片全送无隐形消费。",
+    "years": "5-10年"
+  }
+]

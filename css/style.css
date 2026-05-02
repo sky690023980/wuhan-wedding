@@ -1,0 +1,149 @@
+/* ===== 全局样式 ===== */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif; color: #1a1a2e; background: #f8f9fa; line-height: 1.6; }
+
+a { text-decoration: none; color: inherit; }
+ul { list-style: none; }
+.container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+
+/* ===== 导航栏 ===== */
+.navbar { background: #fff; border-bottom: 1px solid #eee; padding: 0 24px; position: sticky; top: 0; z-index: 100; }
+.nav-inner { max-width: 1100px; margin: 0 auto; display: flex; align-items: center; height: 60px; gap: 24px; }
+.logo { font-size: 18px; font-weight: 700; color: #e84b8a; white-space: nowrap; }
+.nav-links { display: flex; gap: 4px; flex: 1; overflow-x: auto; }
+.nav-links a { padding: 8px 14px; border-radius: 8px; font-size: 13.5px; color: #555; white-space: nowrap; transition: background 0.2s; }
+.nav-links a:hover, .nav-links a.active { background: #fce4ef; color: #e84b8a; font-weight: 500; }
+.nav-actions { margin-left: auto; }
+.btn-outline { padding: 7px 16px; border: 1.5px solid #e84b8a; border-radius: 8px; color: #e84b8a; font-size: 13px; font-weight: 500; transition: all 0.2s; }
+.btn-outline:hover { background: #e84b8a; color: #fff; }
+
+/* ===== Hero ===== */
+.hero { background: linear-gradient(135deg, #fce4ef 0%, #f3e5f5 50%, #e8eaf6 100%); padding: 64px 24px 56px; text-align: center; }
+.hero-inner { max-width: 680px; margin: 0 auto; }
+.hero h1 { font-size: 32px; font-weight: 700; color: #1a1a2e; margin-bottom: 12px; }
+.hero-sub { color: #666; font-size: 15px; margin-bottom: 28px; }
+.search-box { display: flex; gap: 10px; background: #fff; border-radius: 14px; padding: 8px; box-shadow: 0 4px 24px rgba(0,0,0,0.08); max-width: 600px; margin: 0 auto 16px; }
+.search-select { padding: 10px 12px; border: 1px solid #e0e0e0; border-radius: 8px; font-size: 13.5px; color: #333; background: #fafafa; min-width: 130px; }
+.search-input { flex: 1; padding: 10px 14px; border: 1px solid #e0e0e0; border-radius: 8px; font-size: 13.5px; outline: none; }
+.search-input:focus { border-color: #e84b8a; }
+.btn-search { padding: 10px 24px; background: #e84b8a; color: #fff; border: none; border-radius: 10px; font-size: 14px; font-weight: 500; cursor: pointer; white-space: nowrap; transition: background 0.2s; }
+.btn-search:hover { background: #d63a7a; }
+.quick-tags { font-size: 12.5px; color: #888; }
+.quick-tags span { margin-right: 6px; }
+.quick-tags a { color: #e84b8a; margin: 0 4px; }
+.quick-tags a:hover { text-decoration: underline; }
+
+/* ===== 数据概览 ===== */
+.stats { background: #fff; padding: 28px 24px; border-bottom: 1px solid #f0f0f0; }
+.stats .container { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+.stat-item { text-align: center; padding: 12px; }
+.stat-num { font-size: 28px; font-weight: 700; color: #e84b8a; }
+.stat-label { font-size: 12.5px; color: #888; margin-top: 4px; }
+
+/* ===== 通用分栏标题 ===== */
+.section-title { font-size: 22px; font-weight: 700; margin-bottom: 6px; }
+.section-desc { color: #888; font-size: 14px; margin-bottom: 24px; }
+
+/* ===== 分类入口 ===== */
+.categories { padding: 52px 24px; }
+.cat-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 14px; }
+.cat-card { background: #fff; border: 1px solid #f0f0f0; border-radius: 14px; padding: 24px 16px; text-align: center; cursor: pointer; transition: all 0.2s; }
+.cat-card:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.08); transform: translateY(-2px); }
+.cat-icon { font-size: 32px; margin-bottom: 10px; }
+.cat-card h3 { font-size: 14px; font-weight: 600; color: #1a1a2e; margin-bottom: 4px; }
+.cat-card p { font-size: 12px; color: #999; }
+
+/* ===== 精选商家 ===== */
+.featured { padding: 52px 24px; background: #fff; }
+.vendor-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 18px; }
+.vendor-card { background: #f8f9fa; border-radius: 14px; overflow: hidden; border: 1px solid #f0f0f0; transition: all 0.2s; cursor: pointer; }
+.vendor-card:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.1); transform: translateY(-2px); }
+.vendor-img { width: 100%; height: 200px; background: #e0e0e0; display: flex; align-items: center; justify-content: center; color: #aaa; font-size: 13px; }
+.vendor-body { padding: 14px 16px; }
+.vendor-name { font-size: 15px; font-weight: 600; margin-bottom: 6px; }
+.vendor-meta { font-size: 12.5px; color: #888; margin-bottom: 8px; display: flex; align-items: center; gap: 10px; }
+.vendor-price { color: #e84b8a; font-weight: 600; font-size: 14px; }
+.vendor-rating { color: #f5a623; font-size: 12.5px; }
+.vendor-tags { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 8px; }
+.vendor-tag { font-size: 11px; padding: 2px 8px; background: #fce4ef; color: #e84b8a; border-radius: 4px; }
+.section-more { text-align: center; margin-top: 28px; }
+.btn-primary { display: inline-block; padding: 10px 28px; background: #e84b8a; color: #fff; border-radius: 10px; font-size: 14px; font-weight: 500; transition: background 0.2s; }
+.btn-primary:hover { background: #d63a7a; }
+
+/* ===== 区域查找 ===== */
+.districts { padding: 52px 24px; }
+.district-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 14px; }
+.district-card { background: #fff; border: 1px solid #f0f0f0; border-radius: 14px; padding: 22px 16px; text-align: center; transition: all 0.2s; }
+.district-card:hover { background: #fce4ef; }
+.district-card h3 { font-size: 15px; font-weight: 600; margin-bottom: 4px; }
+.district-card p { font-size: 12px; color: #999; }
+
+/* ===== 攻略区 ===== */
+.guides { padding: 52px 24px; background: #fff; }
+.guide-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 16px; }
+.guide-card { padding: 20px; border: 1px solid #f0f0f0; border-radius: 14px; transition: all 0.2s; }
+.guide-card:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.08); }
+.guide-tag { font-size: 11px; padding: 2px 8px; background: #e8eaf6; color: #5c6bc0; border-radius: 4px; display: inline-block; margin-bottom: 8px; }
+.guide-card h3 { font-size: 15px; font-weight: 600; margin-bottom: 8px; line-height: 1.5; }
+.guide-card p { font-size: 13px; color: #888; }
+
+/* ===== 列表页 ===== */
+.page-header { background: linear-gradient(135deg, #fce4ef, #f3e5f5); padding: 40px 24px; }
+.page-header h1 { font-size: 26px; font-weight: 700; margin-bottom: 6px; }
+.page-header p { color: #666; font-size: 14px; }
+.filter-bar { background: #fff; padding: 14px 24px; border-bottom: 1px solid #f0f0f0; display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+.filter-bar select, .filter-bar input { padding: 8px 12px; border: 1px solid #e0e0e0; border-radius: 8px; font-size: 13px; }
+.filter-bar input { flex: 1; min-width: 180px; }
+
+/* ===== 商家详情页 ===== */
+.vendor-detail { padding: 32px 24px; }
+.vendor-hero { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; margin-bottom: 32px; }
+.vendor-gallery { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+.vendor-gallery .main-img { grid-column: 1 / -1; height: 280px; background: #e0e0e0; border-radius: 12px; display: flex; align-items: center; justify-content: center; color: #aaa; }
+.vendor-gallery .sub-img { height: 120px; background: #e0e0e0; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #aaa; font-size: 12px; }
+.vendor-info h1 { font-size: 24px; font-weight: 700; margin-bottom: 8px; }
+.vendor-info .info-rating { font-size: 14px; color: #f5a623; margin-bottom: 12px; }
+.vendor-info .info-meta { font-size: 13.5px; color: #666; margin-bottom: 6px; }
+.vendor-info .info-price { font-size: 20px; color: #e84b8a; font-weight: 700; margin: 14px 0; }
+.btn-contact { display: inline-block; padding: 10px 28px; background: #e84b8a; color: #fff; border: none; border-radius: 10px; font-size: 14px; cursor: pointer; margin-top: 12px; }
+.detail-section { margin-bottom: 28px; }
+.detail-section h2 { font-size: 18px; font-weight: 600; margin-bottom: 12px; padding-bottom: 8px; border-bottom: 2px solid #fce4ef; }
+.review-card { background: #f8f9fa; padding: 14px; border-radius: 10px; margin-bottom: 10px; }
+.review-card .review-author { font-weight: 600; font-size: 13.5px; margin-bottom: 4px; }
+.review-card .review-text { font-size: 13px; color: #555; }
+.review-card .review-rating { color: #f5a623; font-size: 12px; margin-top: 6px; }
+
+/* ===== 入驻表单 ===== */
+.submit-section { padding: 40px 24px; }
+.submit-form { max-width: 600px; margin: 0 auto; background: #fff; padding: 32px; border-radius: 16px; box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
+.form-group { margin-bottom: 18px; }
+.form-group label { display: block; font-size: 13.5px; font-weight: 500; margin-bottom: 6px; color: #333; }
+.form-group input, .form-group select, .form-group textarea { width: 100%; padding: 10px 12px; border: 1px solid #e0e0e0; border-radius: 8px; font-size: 13.5px; font-family: inherit; }
+.form-group textarea { min-height: 100px; resize: vertical; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+
+/* ===== Footer ===== */
+.footer { background: #1a1a2e; color: #ccc; padding: 40px 24px 20px; }
+.footer .container { max-width: 1100px; margin: 0 auto; }
+.footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 32px; margin-bottom: 28px; }
+.footer h3 { color: #fff; font-size: 16px; margin-bottom: 12px; }
+.footer h4 { color: #fff; font-size: 14px; margin-bottom: 10px; }
+.footer p { font-size: 13px; color: #999; line-height: 1.8; }
+.footer ul li { margin-bottom: 6px; }
+.footer ul li a { font-size: 13px; color: #999; }
+.footer ul li a:hover { color: #e84b8a; }
+.footer-bottom { border-top: 1px solid #2a2a40; padding-top: 16px; text-align: center; font-size: 12.5px; color: #666; }
+
+/* ===== 响应式 ===== */
+.hamburger { display: none; background: none; border: none; font-size: 22px; cursor: pointer; color: #555; padding: 4px 6px; margin-left: 8px; }
+@media (max-width: 768px) {
+  .nav-links { display: none; position: absolute; top: 60px; left: 0; right: 0; background: #fff; flex-direction: column; padding: 10px 0; box-shadow: 0 4px 12px rgba(0,0,0,.08); z-index: 99; }
+  .nav-links a { padding: 12px 24px; border-radius: 0; }
+  .hamburger { display: inline-block; }
+  .hero h1 { font-size: 24px; }
+  .stats .container { grid-template-columns: repeat(2, 1fr); }
+  .vendor-detail .vendor-hero { grid-template-columns: 1fr; }
+  .footer-grid { grid-template-columns: 1fr; }
+  .search-box { flex-direction: column; }
+  .form-row { grid-template-columns: 1fr; }
+}

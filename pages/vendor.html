@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>商家详情 - 武汉婚庆目录</title>
+  <meta name="description" content="查看武汉婚庆服务商详细信息、用户评价、案例展示。">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="../index.html" class="logo">💍 武汉婚庆目录</a>
+    <div class="nav-links">
+      <a href="../index.html">首页</a>
+      <a href="category.html?cat=photography">婚庆摄影</a>
+      <a href="category.html?cat=make-up">婚礼化妆</a>
+      <a href="category.html?cat=venue">婚礼场地</a>
+      <a href="category.html?cat=planner">婚庆策划</a>
+      <a href="category.html?cat=host">婚礼主持</a>
+    </div>
+    <div class="nav-actions">
+      <a href="submit.html" class="btn-outline">商家入驻</a>
+    </div>
+  </div>
+</nav>
+
+<section class="vendor-detail">
+  <div class="container">
+    <div id="vendor-detail-content">
+      <!-- JS动态渲染 -->
+    </div>
+
+    <!-- 用户评价 -->
+    <div class="detail-section">
+      <h2>用户评价（<span id="review-count">0</span>）</h2>
+      <div id="reviews-list">
+        <!-- JS动态渲染 -->
+      </div>
+    </div>
+
+    <!-- 相关推荐 -->
+    <div id="related-list">
+      <!-- JS动态渲染 -->
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <h3>武汉婚庆目录</h3>
+        <p>专注武汉本地婚庆服务商真实评价平台。</p>
+      </div>
+      <div>
+        <h4>服务类别</h4>
+        <ul>
+          <li><a href="category.html?cat=photography">婚庆摄影</a></li>
+          <li><a href="category.html?cat=make-up">婚礼化妆</a></li>
+          <li><a href="category.html?cat=venue">婚礼场地</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>关于我们</h4>
+        <ul>
+          <li><a href="#">关于本站</a></li>
+          <li><a href="submit.html">商家入驻</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 武汉婚庆目录</p>
+    </div>
+  </div>
+</footer>
+
+<script src="../js/app.js"></script>
+<script>loadVendorDetail();</script>
+</body>
+</html>

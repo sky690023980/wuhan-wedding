@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>商家入驻 - 武汉婚庆目录</title>
+  <meta name="description" content="武汉婚庆服务商免费入驻，展示你的服务，获取精准客户。">
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    .submit-layout { display: grid; grid-template-columns: 1fr 360px; gap: 32px; max-width: 960px; margin: 0 auto; }
+    .submit-side { padding: 28px; }
+    .benefit-list li { padding: 10px 0; border-bottom: 1px solid #f5f5f5; font-size: 13.5px; color: #555; display: flex; align-items: flex-start; gap: 10px; line-height: 1.6; }
+    .benefit-list li:last-child { border: none; }
+    .benefit-icon { font-size: 18px; flex-shrink: 0; margin-top: 1px; }
+    .steps-bar { display: flex; gap: 0; margin-bottom: 28px; }
+    .step { flex: 1; text-align: center; padding: 10px 4px; font-size: 12px; color: #bbb; position: relative; }
+    .step.active { color: #e84b8a; font-weight: 600; }
+    .step::after { content: '→'; position: absolute; right: -6px; top: 50%; transform: translateY(-50%); color: #ddd; font-size: 14px; }
+    .step:last-child::after { display: none; }
+    .contact-box { background: #fff8fb; border: 1.5px solid #fce4ef; border-radius: 12px; padding: 20px; margin-top: 24px; }
+    .contact-box h4 { font-size: 14px; font-weight: 600; margin-bottom: 10px; color: #e84b8a; }
+    .contact-box p { font-size: 13px; color: #666; line-height: 1.8; }
+    .wechat-id { font-size: 15px; font-weight: 700; color: #07C160; letter-spacing: 1px; margin: 8px 0; }
+    .tag-free { display: inline-block; background: #e8f5e9; color: #2e7d32; font-size: 11px; padding: 2px 8px; border-radius: 4px; font-weight: 600; margin-left: 6px; }
+    @media (max-width: 768px) { .submit-layout { grid-template-columns: 1fr; } .submit-side { padding: 0 0 24px; } }
+  </style>
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="../index.html" class="logo">💍 武汉婚庆目录</a>
+    <div class="nav-links">
+      <a href="../index.html">首页</a>
+      <a href="category.html">全部商家</a>
+      <a href="submit.html" class="active">商家入驻</a>
+    </div>
+  </div>
+</nav>
+
+<section class="page-header">
+  <div class="container">
+    <h1>免费入驻武汉婚庆目录</h1>
+    <p>填写基本信息 · 1个工作日内审核 · 立即展示给有需要的新人</p>
+  </div>
+</section>
+
+<section class="submit-section">
+  <div class="container">
+    <div class="submit-layout">
+
+      <!-- 左侧：表单 -->
+      <div>
+        <!-- 步骤指引 -->
+        <div class="steps-bar">
+          <div class="step active">① 填写信息</div>
+          <div class="step">② 等待审核</div>
+          <div class="step">③ 上线展示</div>
+        </div>
+
+        <div class="submit-form" id="submit-form-wrapper">
+          <h2 style="font-size:18px;font-weight:700;margin-bottom:4px;">商家基本信息</h2>
+          <p style="color:#999;font-size:13px;margin-bottom:22px;">带 * 的字段为必填项</p>
+
+          <form id="submit-form">
+            <div class="form-group">
+              <label>商家名称 *</label>
+              <input type="text" name="name" required placeholder="如：武汉巴黎婚纱摄影">
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label>服务类别 *</label>
+                <select name="category" required>
+                  <option value="">请选择类别</option>
+                  <option value="photography">📷 婚庆摄影</option>
+                  <option value="make-up">💄 婚礼化妆</option>
+                  <option value="venue">🏨 婚礼场地</option>
+                  <option value="planner">📋 婚庆策划</option>
+                  <option value="host">🎤 婚礼主持</option>
+                  <option value="dress">👗 婚纱礼服</option>
+                  <option value="flower">💐 婚礼花艺</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>所在区域 *</label>
+                <select name="district" required>
+                  <option value="">请选择区域</option>
+                  <option value="武昌区">武昌区</option>
+                  <option value="汉口区">汉口区</option>
+                  <option value="汉阳区">汉阳区</option>
+                  <option value="青山区">青山区</option>
+                  <option value="洪山区">洪山区</option>
+                  <option value="江夏区">江夏区</option>
+                  <option value="硚口区">硚口区</option>
+                  <option value="江汉区">江汉区</option>
+                  <option value="江岸区">江岸区</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label>详细地址 *</label>
+              <input type="text" name="address" required placeholder="如：武汉市武昌区中南路88号">
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label>联系电话 *</label>
+                <input type="tel" name="phone" required placeholder="如：13800001111">
+              </div>
+              <div class="form-group">
+                <label>参考价格 *</label>
+                <input type="text" name="price" required placeholder="如：¥3999起">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label>商家简介 *</label>
+              <textarea name="desc" required placeholder="简要描述您的服务特色、经营年限、服务优势等（50-200字）" style="min-height:90px;"></textarea>
+            </div>
+
+            <div class="form-group">
+              <label>服务标签 <span style="color:#bbb;font-size:12px;">用逗号分隔，最多5个</span></label>
+              <input type="text" name="tags" placeholder="如：韩式风格, 一对一服务, 底片全送">
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label>微信号（选填）</label>
+                <input type="text" name="wechat" placeholder="商家微信号">
+              </div>
+              <div class="form-group">
+                <label>营业年限（选填）</label>
+                <select name="years">
+                  <option value="">不填写</option>
+                  <option value="1年以内">1年以内</option>
+                  <option value="1-3年">1-3年</option>
+                  <option value="3-5年">3-5年</option>
+                  <option value="5-10年">5-10年</option>
+                  <option value="10年以上">10年以上</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label>官网/微信公众号（选填）</label>
+              <input type="text" name="website" placeholder="如：www.example.com 或 公众号名称">
+            </div>
+
+            <button type="submit" class="btn-primary" style="width:100%;padding:13px;font-size:15px;border:none;cursor:pointer;">
+              🚀 提交入驻申请（免费）
+            </button>
+          </form>
+
+          <!-- 提交成功提示 -->
+          <div id="submit-result" style="display:none;text-align:center;padding:48px 20px;">
+            <div style="font-size:56px;margin-bottom:16px;">🎉</div>
+            <h3 style="font-size:20px;font-weight:700;margin-bottom:10px;">申请已提交！</h3>
+            <p style="color:#888;font-size:14px;line-height:1.8;">
+              我们已收到您的入驻申请，将在<strong>1个工作日</strong>内审核。<br>
+              审核通过后会通过电话/微信通知您。<br><br>
+              有疑问？加微信 <strong style="color:#07C160;">wh_wedding_dir</strong> 快速咨询 👋
+            </p>
+            <a href="../index.html" class="btn-primary" style="display:inline-block;margin-top:20px;">返回首页</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 右侧：说明 -->
+      <div class="submit-side">
+        <h3 style="font-size:16px;font-weight:700;margin-bottom:16px;">为什么选择入驻？</h3>
+        <ul class="benefit-list">
+          <li>
+            <span class="benefit-icon">🆓</span>
+            <div><strong>完全免费入驻</strong><br>基础展示永久免费，无任何隐形费用</div>
+          </li>
+          <li>
+            <span class="benefit-icon">🎯</span>
+            <div><strong>精准流量</strong><br>来访用户均为武汉本地正在筹备婚礼的新人</div>
+          </li>
+          <li>
+            <span class="benefit-icon">⭐</span>
+            <div><strong>真实评价背书</strong><br>帮助你建立口碑，让好口碑转化为新客户</div>
+          </li>
+          <li>
+            <span class="benefit-icon">🔍</span>
+            <div><strong>SEO 曝光</strong><br>商家页面独立收录百度，「武汉婚纱摄影」等关键词持续引流</div>
+          </li>
+          <li>
+            <span class="benefit-icon">📱</span>
+            <div><strong>移动端完美适配</strong><br>手机端访问体验优化，随时随地被发现</div>
+          </li>
+        </ul>
+
+        <!-- 联系框 -->
+        <div class="contact-box">
+          <h4>📞 有疑问？直接联系我</h4>
+          <p>添加微信，我会亲自回复每一条消息：</p>
+          <div class="wechat-id">微信：wh_wedding_dir</div>
+          <p style="font-size:12px;color:#bbb;margin-top:6px;">工作时间：周一至周日 9:00 - 21:00</p>
+        </div>
+
+        <!-- 已入驻数据 -->
+        <div style="margin-top:20px;padding:16px;background:#f8f9fa;border-radius:10px;font-size:13px;color:#888;text-align:center;">
+          <div style="font-size:24px;font-weight:700;color:#e84b8a;" id="side-vendor-count">—</div>
+          <div>家商家已入驻</div>
+          <div style="margin-top:8px;font-size:11px;color:#bbb;">持续收录中，欢迎加入</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <h3>武汉婚庆目录</h3>
+        <p>专注武汉本地婚庆服务商信息收录，帮助新人找到靠谱服务商。</p>
+      </div>
+      <div>
+        <h4>服务类别</h4>
+        <ul>
+          <li><a href="category.html?cat=photography">婚庆摄影</a></li>
+          <li><a href="category.html?cat=make-up">婚礼化妆</a></li>
+          <li><a href="category.html?cat=venue">婚礼场地</a></li>
+          <li><a href="category.html?cat=planner">婚庆策划</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>联系我们</h4>
+        <ul>
+          <li><a href="submit.html">商家入驻</a></li>
+          <li><a href="#">关于本站</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 武汉婚庆目录 · 用心服务每一场婚礼</p>
+    </div>
+  </div>
+</footer>
+
+<script src="../js/app.js"></script>
+<script>
+  initSubmitForm();
+  // 显示商家数量
+  loadVendors().then(() => {
+    const el = document.getElementById('side-vendor-count');
+    if (el && allVendors.length) el.textContent = allVendors.length + '+';
+  });
+</script>
+</body>
+</html>
