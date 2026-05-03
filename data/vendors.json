@@ -14,7 +14,8 @@
     "featured": true,
     "verified": true,
     "desc": "成立于2011年，拥有十年以上专业经验，服务标准高，性价比突出，已服务数千对新人，拥有专业执行团队。",
-    "years": "10年以上"
+    "years": "10年以上",
+    "image": "https://images.unsplash.com/photo-1519741497674-611481863552?w=600&q=80&auto=format&fit=crop"
   },
   {
     "id": 2,
@@ -31,7 +32,8 @@
     "featured": true,
     "verified": true,
     "desc": "年轻富有创意的策划与执行团队，将新人个人故事融入婚礼设计，沟通顺畅，服务省心，深受新人好评。",
-    "years": "5-10年"
+    "years": "5-10年",
+    "image": "https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?w=600&q=80&auto=format&fit=crop"
   },
   {
     "id": 3,
@@ -48,7 +50,8 @@
     "featured": true,
     "verified": true,
     "desc": "创立于2007年，由龙熙婚礼品牌升级而来。新人评价预算利用率极高，无隐形消费，审美在线，服务细致。",
-    "years": "15年以上"
+    "years": "15年以上",
+    "image": "https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=600&q=80&auto=format&fit=crop"
   },
   {
     "id": 4,
@@ -65,7 +68,8 @@
     "featured": true,
     "verified": true,
     "desc": "深受90后新人喜爱，主打高性价比轻定制婚礼，全景宽敞的婚典礼厅，是武汉知名婚庆品牌之一。",
-    "years": "10年以上"
+    "years": "10年以上",
+    "image": "https://images.unsplash.com/photo-1478146896981-b80fe463b330?w=600&q=80&auto=format&fit=crop"
   },
   {
     "id": 5,
@@ -82,7 +86,8 @@
     "featured": true,
     "verified": true,
     "desc": "2005年创立于北京，至2021年已服务全国超60000对新人。以金标准品质、标准化服务著称的全国连锁品牌。",
-    "years": "15年以上"
+    "years": "15年以上",
+    "image": "https://images.unsplash.com/photo-1507504031003-b417219a0fde?w=600&q=80&auto=format&fit=crop"
   },
   {
     "id": 6,
@@ -99,7 +104,8 @@
     "featured": false,
     "verified": true,
     "desc": "一站式婚礼服务，十年以上行业经验，集团化运营，整合优质行业资源。新人评价设计效果120%还原，超预期。",
-    "years": "10年以上"
+    "years": "10年以上",
+    "image": "https://images.unsplash.com/photo-1529543544282-ea669407fca3?w=600&q=80&auto=format&fit=crop"
   },
   {
     "id": 7,
@@ -116,7 +122,8 @@
     "featured": false,
     "verified": true,
     "desc": "定位"闺蜜式婚礼策划"，荣获消费信赖品牌、中国婚庆行业影响力TOP10等称号，服务品质高端细致。",
-    "years": "8年以上"
+    "years": "8年以上",
+    "image": "https://images.unsplash.com/photo-1460978812857-470ed1c77af0?w=600&q=80&auto=format&fit=crop"
   },
   {
     "id": 8,
@@ -133,7 +140,8 @@
     "featured": false,
     "verified": true,
     "desc": "2009年创立于武汉，拥有自有仓库和执行团队，不外包场地搭建。设计师亲自测量酒店场地，确保设计精准落地。",
-    "years": "12年以上"
+    "years": "12年以上",
+    "image": "https://images.unsplash.com/photo-1525328437458-0c4d4db7cab4?w=600&q=80&auto=format&fit=crop"
   },
   {
     "id": 9,
@@ -150,11 +158,12 @@
     "featured": false,
     "verified": true,
     "desc": "年轻有创意的策划团队，以文化为底蕴的设计理念，定价诚信合理，效率高的，是武汉性价比极高的婚礼策划选择。",
-    "years": "5年以上"
+    "years": "5年以上",
+    "image": "https://images.unsplash.com/photo-1606216794074-735e91aa2c92?w=600&q=80&auto=format&fit=crop"
   },
   {
     "id": 10,
-    "name": "视尚影像婚纱摄影·格格旅拍",
+    "name": "视尚影像婚纱摄影",
     "category": "photography",
     "district": "洪山区",
     "address": "武汉市洪山区街道口广场A栋2楼",
@@ -167,7 +176,8 @@
     "featured": true,
     "verified": true,
     "desc": "武汉知名婚纱摄影工作室，采用一天只拍一对的一对一服务模式，提供旅拍服务，底片全送，无隐形消费。",
-    "years": "8年以上"
+    "years": "8年以上",
+    "image": "https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=600&q=80&auto=format&fit=crop"
   },
   {
     "id": 11,
@@ -184,7 +194,8 @@
     "featured": true,
     "verified": true,
     "desc": "拥有26000平全新美学馆，武汉一流婚纱摄影机构，专业团队一对一服务，多种风格任你选择，时光流逝，唯爱永恒。",
-    "years": "10年以上"
+    "years": "10年以上",
+    "image": "https://images.unsplash.com/photo-1550005809-91ad75fb315f?w=600&q=80&auto=format&fit=crop"
   },
   {
     "id": 12,
@@ -201,7 +212,8 @@
     "featured": false,
     "verified": true,
     "desc": "武汉知名婚纱摄影工作室，将手绘元素融入婚纱照，风格个性鲜明，深受年轻新人喜爱。",
-    "years": "8年以上"
+    "years": "8年以上",
+    "image": "https://images.unsplash.com/photo-1591604466107-ec97de577aff?w=600&q=80&auto=format&fit=crop"
   },
   {
     "id": 13,
@@ -218,7 +230,8 @@
     "featured": false,
     "verified": true,
     "desc": "国际知名婚礼摄影师蔡敏亮(CM Leung)助力，城市婚纱旅拍，专业品质保障，高端定制婚纱摄影服务。",
-    "years": "10年以上"
+    "years": "10年以上",
+    "image": "https://images.unsplash.com/photo-1621184455862-c163dfb30e0f?w=600&q=80&auto=format&fit=crop"
   },
   {
     "id": 14,
@@ -235,11 +248,12 @@
     "featured": true,
     "verified": true,
     "desc": "湖北省婚庆文化产业发展促进会共同打造的中国婚礼堂知名品牌，一站式婚礼服务，婚宴、策划、执行全包，省心省力。",
-    "years": "8年以上"
+    "years": "8年以上",
+    "image": "https://images.unsplash.com/photo-1470290378698-263fa7ca60ab?w=600&q=80&auto=format&fit=crop"
   },
   {
     "id": 15,
-    "name": "湖锦宴（2026推荐）",
+    "name": "湖锦宴",
     "category": "venue",
     "district": "武昌区",
     "address": "武汉市武昌区（需补充详细地址）",
@@ -252,7 +266,8 @@
     "featured": true,
     "verified": true,
     "desc": "2026年武汉必火婚礼风格推荐，六大主题宴会厅全盘点，一站式备婚模式，让新人开启躺赢式备婚体验。",
-    "years": "5年以上"
+    "years": "5年以上",
+    "image": "https://images.unsplash.com/photo-1601583485767-c5d93e795e89?w=600&q=80&auto=format&fit=crop"
   },
   {
     "id": 16,
@@ -269,7 +284,8 @@
     "featured": true,
     "verified": true,
     "desc": "位于武汉光谷核心区域，五星标准酒店，以先进的设施、浪漫的花卉装饰、精致的婚礼蛋糕，为新人打造完美婚礼日。",
-    "years": "10年以上"
+    "years": "10年以上",
+    "image": "https://images.unsplash.com/photo-1551016231-e4b1da74e77f?w=600&q=80&auto=format&fit=crop"
   },
   {
     "id": 17,
@@ -286,11 +302,12 @@
     "featured": false,
     "verified": true,
     "desc": "位于汉阳晴川桥畔，江景视野开阔，假日酒店品牌保障，专业婚礼团队全程服务，是武汉极具特色的婚宴场地之一。",
-    "years": "15年以上"
+    "years": "15年以上",
+    "image": "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=600&q=80&auto=format&fit=crop"
   },
   {
     "id": 18,
-    "name": "东湖湖滨客舍（东湖会）",
+    "name": "东湖湖滨客舍",
     "category": "venue",
     "district": "武昌区",
     "address": "武汉市武昌区黄鹂路78号",
@@ -303,7 +320,8 @@
     "featured": false,
     "verified": true,
     "desc": "位于东湖边，可在湖边举办户外婚礼，庭院风格精致，无婚庆进场费（需缴纳5000元押金，退场后退还）。",
-    "years": "8年以上"
+    "years": "8年以上",
+    "image": "https://images.unsplash.com/photo-1563461660947-507ef49e9c47?w=600&q=80&auto=format&fit=crop"
   },
   {
     "id": 19,
@@ -320,7 +338,8 @@
     "featured": false,
     "verified": true,
     "desc": "园博园内特色婚礼场地，被誉为武汉最特别的婚礼殿堂之一，园林环绕，多主题宴会厅可选，适合举办特色户外园林婚礼。",
-    "years": "6年以上"
+    "years": "6年以上",
+    "image": "https://images.unsplash.com/photo-1532712938310-34cb3982ef74?w=600&q=80&auto=format&fit=crop"
   },
   {
     "id": 20,
@@ -337,6 +356,7 @@
     "featured": false,
     "verified": false,
     "desc": "武汉市规模最大、最具实力的婚庆策划公司之一，拥有经验丰富、技术过硬的专业团队，致力于打造优质、个性、精致的婚礼。",
-    "years": "10年以上"
+    "years": "10年以上",
+    "image": "https://images.unsplash.com/photo-1542272604-787c3835535d?w=600&q=80&auto=format&fit=crop"
   }
 ]

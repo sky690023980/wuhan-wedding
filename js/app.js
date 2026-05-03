@@ -68,16 +68,28 @@ function renderFeatured() {
 }
 
 // ===== 商家卡片HTML =====
-function vendorCardHTML(v) {
+function vendorCardHTML(v, fromSubpage) {
   const cat = CATEGORIES[v.category] || {};
+  // 根据当前页面层级确定链接前缀
+  const isSubpage = fromSubpage !== undefined ? fromSubpage : location.pathname.includes('/pages/');
+  const detailPath = isSubpage ? 'vendor.html' : 'pages/vendor.html';
+  // 图片：优先使用 v.image，否则用分类色块占位
+  const imgTag = v.image
+    ? `<img src="${v.image}" alt="${v.name}" class="vendor-thumb" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">`
+    : '';
+  const fallbackDiv = `<div class="vendor-img-fallback" style="display:${v.image ? 'none' : 'flex'}">${cat.icon || '🏪'}</div>`;
   return `
-    <a href="pages/vendor.html?id=${v.id}" class="vendor-card">
-      <div class="vendor-img">${cat.icon || '🏪'} ${v.name}</div>
+    <a href="${detailPath}?id=${v.id}" class="vendor-card">
+      <div class="vendor-img-wrap">
+        ${imgTag}
+        ${fallbackDiv}
+        <div class="vendor-cat-badge">${cat.name || v.category}</div>
+      </div>
       <div class="vendor-body">
-        <div class="vendor-name">${v.verified ? '✅' : ''} ${v.name}</div>
+        <div class="vendor-name">${v.verified ? '<span class="verified-icon">✓</span>' : ''} ${v.name}</div>
         <div class="vendor-meta">
-          <span class="vendor-rating">★ ${v.rating}（${v.reviews}条评价）</span>
-          <span>${v.district}</span>
+          <span class="vendor-rating">★ ${v.rating}<em>（${v.reviews}条评价）</em></span>
+          <span class="vendor-district-tag">📍 ${v.district}</span>
         </div>
         ${v.tags ? `<div class="vendor-tags">${v.tags.map(t => `<span class="vendor-tag">${t}</span>`).join('')}</div>` : ''}
         <div class="vendor-price">${v.price}</div>
@@ -165,13 +177,27 @@ async function loadVendorDetail() {
   const detail = document.getElementById('vendor-detail-content');
   if (!detail) return;
 
+  // 生成画廊图片组（主图+4个缩略图，均使用Unsplash同主题图）
+  const galleryImgs = v.image ? [v.image,
+    v.image.replace('w=600', 'w=400') + '&sat=-30',
+    v.image.replace('w=600', 'w=400') + '&hue=20',
+    v.image.replace('w=600', 'w=400') + '&bri=10',
+    v.image.replace('w=600', 'w=400') + '&con=10'
+  ] : [];
+
+  const fallbackIcon = cat.icon || '🏪';
+  const mainImgHTML = galleryImgs[0]
+    ? `<img src="${galleryImgs[0]}" alt="${v.name}" class="gallery-main-img" onerror="this.outerHTML='<div class=gallery-main-fallback>${fallbackIcon}</div>'">`
+    : `<div class="gallery-main-fallback">${fallbackIcon}</div>`;
+
+  const subImgsHTML = galleryImgs.slice(1).map((url, i) =>
+    `<img src="${url}" alt="${v.name}案例${i+1}" class="gallery-sub-img" loading="lazy" onerror="this.style.opacity='.3'">`
+  ).join('') || '<div class="sub-img" style="opacity:.3">案例图片</div>'.repeat(4);
+
   detail.innerHTML = `
     <div class="vendor-gallery">
-      <div class="main-img">${cat.icon || '🏪'} ${v.name} - 主展示图</div>
-      <div class="sub-img">案例图片1</div>
-      <div class="sub-img">案例图片2</div>
-      <div class="sub-img">案例图片3</div>
-      <div class="sub-img">案例图片4</div>
+      <div class="main-img">${mainImgHTML}</div>
+      <div class="sub-imgs-row">${subImgsHTML}</div>
     </div>
     <div class="vendor-info">
       <h1>${v.verified ? '✅ ' : ''}${v.name}</h1>
