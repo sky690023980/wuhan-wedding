@@ -149,6 +149,202 @@ function doSearch() {
   location.href = url;
 }
 
+// ===== 搜索联想（实时搜索建议）=====
+const SEARCH_SUGGESTIONS_KEY = 'wh_wedding_search_history';
+
+function getSearchHistory() {
+  try { return JSON.parse(localStorage.getItem(SEARCH_SUGGESTIONS_KEY) || '[]'); } catch(e) { return []; }
+}
+
+function saveSearchHistory(keyword) {
+  if (!keyword || keyword.length < 2) return;
+  let history = getSearchHistory().filter(h => h !== keyword);
+  history.unshift(keyword);
+  if (history.length > 8) history = history.slice(0, 8);
+  localStorage.setItem(SEARCH_SUGGESTIONS_KEY, JSON.stringify(history));
+}
+
+function clearSearchHistory() {
+  localStorage.removeItem(SEARCH_SUGGESTIONS_KEY);
+  hideSuggestions();
+}
+
+function initSearchSuggestions() {
+  const input = document.getElementById('search-keyword');
+  if (!input) return;
+
+  // 创建建议下拉框
+  let box = document.getElementById('search-suggestions');
+  if (!box) {
+    box = document.createElement('div');
+    box.id = 'search-suggestions';
+    box.className = 'search-suggestions';
+    input.parentNode.parentNode.appendChild(box);
+  }
+
+  input.addEventListener('input', function() {
+    const kw = this.value.trim();
+    if (kw.length < 1) { hideSuggestions(); return; }
+    showSuggestions(kw);
+  });
+
+  input.addEventListener('focus', function() {
+    const kw = this.value.trim();
+    if (kw.length < 1 && getSearchHistory().length > 0) {
+      showHistorySuggestions();
+    } else if (kw.length >= 1) {
+      showSuggestions(kw);
+    }
+  });
+
+  document.addEventListener('click', function(e) {
+    if (!e.target.closest('.search-box')) hideSuggestions();
+  });
+}
+
+async function showSuggestions(kw) {
+  const box = document.getElementById('search-suggestions');
+  if (!box) return;
+
+  // 加载数据（如果还没加载）
+  if (allVendors.length === 0) await loadVendors();
+
+  const results = searchVendors(kw, 6);
+  const history = getSearchHistory().filter(h => h.includes(kw)).slice(0, 2);
+
+  let html = '';
+
+  if (history.length > 0) {
+    html += '<div class="suggestion-group"><div class="suggestion-label">搜索历史</div>';
+    history.forEach(h => {
+      html += `<div class="suggestion-item history-item" onclick="selectSuggestion('${escapeHtml(h)}')"><span>🕐</span><span>${highlightMatch(h, kw)}</span><span class="del-history" onclick="event.stopPropagation();removeHistory('${escapeHtml(h)}')">✕</span></div>`;
+    });
+    html += '</div>';
+  }
+
+  if (results.length > 0) {
+    html += '<div class="suggestion-group"><div class="suggestion-label">商家推荐</div>';
+    results.forEach(r => {
+      const cat = CATEGORIES[r.category] || {};
+      html += `<div class="suggestion-item" onclick="selectSuggestion('${escapeHtml(r.name)}')"><span>${cat.icon || '🏷️'}</span><span>${highlightMatch(r.name, kw)} <em>${r.district} · ${cat.name || ''} · ${r.price}</em></span></div>`;
+    });
+    html += '</div>';
+  }
+
+  // 匹配分类
+  const catMatches = Object.entries(CATEGORIES).filter(([k, v]) => v.name.includes(kw) || k.includes(kw.toLowerCase()));
+  if (catMatches.length > 0) {
+    html += '<div class="suggestion-group"><div class="suggestion-label">服务类别</div>';
+    catMatches.slice(0, 3).forEach(([k, v]) => {
+      html += `<div class="suggestion-item" onclick="selectCategory('${k}')"><span>${v.icon}</span><span>${highlightMatch(v.name, kw)}</span></div>`;
+    });
+    html += '</div>';
+  }
+
+  // 匹配区域
+  const districtMatches = DISTRICTS.filter(d => d.includes(kw));
+  if (districtMatches.length > 0) {
+    html += '<div class="suggestion-group"><div class="suggestion-label">区域</div>';
+    districtMatches.slice(0, 3).forEach(d => {
+      html += `<div class="suggestion-item" onclick="selectDistrict('${d}')"><span>📍</span><span>${highlightMatch(d, kw)}</span></div>`;
+    });
+    html += '</div>';
+  }
+
+  if (!html) {
+    html = '<div class="suggestion-empty">未找到相关结果，试试其他关键词</div>';
+  }
+
+  box.innerHTML = html;
+  box.style.display = 'block';
+}
+
+function showHistorySuggestions() {
+  const box = document.getElementById('search-suggestions');
+  if (!box) return;
+  const history = getSearchHistory();
+  if (history.length === 0) return;
+
+  let html = '<div class="suggestion-group"><div class="suggestion-label">搜索历史</div>';
+  history.forEach(h => {
+    html += `<div class="suggestion-item history-item" onclick="selectSuggestion('${escapeHtml(h)}')"><span>🕐</span><span>${escapeHtml(h)}</span><span class="del-history" onclick="event.stopPropagation();removeHistory('${escapeHtml(h)}')">✕</span></div>`;
+  });
+  html += `<div class="suggestion-item clear-item" onclick="clearSearchHistory()"><span></span><span>清除搜索历史</span></div>`;
+  html += '</div>';
+
+  box.innerHTML = html;
+  box.style.display = 'block';
+}
+
+function hideSuggestions() {
+  const box = document.getElementById('search-suggestions');
+  if (box) box.style.display = 'none';
+}
+
+function selectSuggestion(text) {
+  const input = document.getElementById('search-keyword');
+  if (input) input.value = text;
+  saveSearchHistory(text);
+  hideSuggestions();
+  doSearch();
+}
+
+function selectCategory(cat) {
+  const catSelect = document.getElementById('search-cat');
+  if (catSelect) catSelect.value = cat;
+  hideSuggestions();
+  doSearch();
+}
+
+function selectDistrict(district) {
+  const input = document.getElementById('search-keyword');
+  if (input) input.value = district;
+  hideSuggestions();
+  doSearch();
+}
+
+function removeHistory(keyword) {
+  let history = getSearchHistory().filter(h => h !== keyword);
+  localStorage.setItem(SEARCH_SUGGESTIONS_KEY, JSON.stringify(history));
+  showHistorySuggestions();
+}
+
+function escapeHtml(text) {
+  return text.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#039;');
+}
+
+function highlightMatch(text, kw) {
+  if (!kw) return escapeHtml(text);
+  const escaped = escapeHtml(text);
+  const kwEscaped = escapeHtml(kw);
+  const regex = new RegExp('(' + kwEscaped.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + ')', 'gi');
+  return escaped.replace(regex, '<strong class="hl">$1</strong>');
+}
+
+// 智能搜索函数（支持名称、标签、描述、区域、拼音首字母等）
+function searchVendors(keyword, limit) {
+  if (!keyword) return [];
+  limit = limit || 50;
+  const kw = keyword.toLowerCase();
+
+  return allVendors.filter(v => {
+    // 名称匹配
+    if (v.name.toLowerCase().includes(kw)) return true;
+    // 区域匹配
+    if (v.district && v.district.includes(kw)) return true;
+    // 标签匹配
+    if (v.tags && v.tags.some(t => t.toLowerCase().includes(kw))) return true;
+    // 描述匹配
+    if (v.desc && v.desc.toLowerCase().includes(kw)) return true;
+    // 分类名匹配
+    const cat = CATEGORIES[v.category];
+    if (cat && cat.name.includes(kw)) return true;
+    // 地址匹配
+    if (v.address && v.address.toLowerCase().includes(kw)) return true;
+    return false;
+  }).slice(0, limit);
+}
+
 // ===== 列表页逻辑 =====
 async function loadCategoryPage() {
   const params = new URLSearchParams(location.search);
@@ -175,16 +371,38 @@ function renderVendorList({ cat, district, q } = {}) {
   let list = allVendors;
   if (cat) list = list.filter(v => v.category === cat);
   if (district) list = list.filter(v => v.district === district);
-  if (q) list = list.filter(v => v.name.includes(q) || (v.tags||[]).some(t => t.includes(q)) || (v.desc||'').includes(q));
+  if (q) {
+    const kw = q.toLowerCase();
+    list = list.filter(v =>
+      v.name.toLowerCase().includes(kw) ||
+      (v.tags||[]).some(t => t.toLowerCase().includes(kw)) ||
+      (v.desc||'').toLowerCase().includes(kw) ||
+      (v.district||'').includes(kw) ||
+      (v.address||'').toLowerCase().includes(kw)
+    );
+    // 保存搜索历史
+    saveSearchHistory(q);
+  }
 
   const grid = document.getElementById('vendor-list');
   if (!grid) return;
   grid.className = 'vendor-grid';
   const countEl = document.getElementById('result-count');
-  if (countEl) countEl.textContent = `共找到 ${list.length} 家服务商`;
+  if (countEl) {
+    let hintText = `共找到 ${list.length} 家服务商`;
+    if (q) hintText = `搜索"${q}"找到 ${list.length} 家服务商`;
+    countEl.textContent = hintText;
+  }
 
   if (list.length === 0) {
-    grid.innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:60px;color:#999;">暂无符合条件的服务商，换个条件试试吧</div>';
+    const emptyMsg = q
+      ? `<div style="grid-column:1/-1;text-align:center;padding:60px;color:#999;">
+          <div style="font-size:48px;margin-bottom:16px;">🔍</div>
+          <div style="font-size:16px;font-weight:600;color:#333;margin-bottom:8px;">未找到"${escapeHtml(q)}"相关的服务商</div>
+          <div style="font-size:13px;">试试其他关键词，如"武昌""光谷""婚礼主持"等</div>
+        </div>`
+      : '<div style="grid-column:1/-1;text-align:center;padding:60px;color:#999;">暂无符合条件的服务商，换个条件试试吧</div>';
+    grid.innerHTML = emptyMsg;
     return;
   }
   grid.innerHTML = list.map(v => vendorCardHTML(v, true)).join('');
@@ -305,6 +523,7 @@ async function loadHomepage() {
   await loadVendors();
   renderCatGrid();
   renderFeatured();
+  initSearchSuggestions();
   setTimeout(animateStats, 300);
 }
 
@@ -329,3 +548,8 @@ window.loadHomepage = loadHomepage;
 window.loadCategoryPage = loadCategoryPage;
 window.loadVendorDetail = loadVendorDetail;
 window.initSubmitForm = initSubmitForm;
+window.selectSuggestion = selectSuggestion;
+window.selectCategory = selectCategory;
+window.selectDistrict = selectDistrict;
+window.clearSearchHistory = clearSearchHistory;
+window.removeHistory = removeHistory;

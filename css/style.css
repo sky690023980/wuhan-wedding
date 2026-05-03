@@ -38,6 +38,24 @@ ul { list-style: none; }
 .quick-tags a { color: #e84b8a; margin: 0 5px; font-weight: 500; }
 .quick-tags a:hover { text-decoration: underline; }
 
+/* ===== 搜索建议下拉框 ===== */
+.search-suggestions { position: absolute; top: 100%; left: 0; right: 0; margin-top: 6px; background: #fff; border-radius: 14px; box-shadow: 0 8px 32px rgba(0,0,0,.12); border: 1px solid #f0e0e6; z-index: 200; max-height: 400px; overflow-y: auto; display: none; }
+.search-suggestions::-webkit-scrollbar { width: 4px; }
+.search-suggestions::-webkit-scrollbar-thumb { background: #ddd; border-radius: 4px; }
+.suggestion-group { padding: 8px 0; }
+.suggestion-group + .suggestion-group { border-top: 1px solid #f5f0f5; }
+.suggestion-label { font-size: 11px; color: #aaa; padding: 4px 16px 6px; font-weight: 600; text-transform: uppercase; letter-spacing: .5px; }
+.suggestion-item { display: flex; align-items: center; gap: 10px; padding: 10px 16px; cursor: pointer; font-size: 13.5px; color: #444; transition: background .15s; }
+.suggestion-item:hover { background: #fce4ef; }
+.suggestion-item em { font-style: normal; color: #999; font-size: 12px; margin-left: 4px; }
+.suggestion-item .hl { color: #e84b8a; font-weight: 700; background: rgba(232,75,138,.08); padding: 0 2px; border-radius: 2px; }
+.suggestion-item .del-history { margin-left: auto; color: #ccc; font-size: 12px; padding: 2px 6px; border-radius: 4px; transition: all .15s; }
+.suggestion-item .del-history:hover { background: #fee; color: #e84b8a; }
+.suggestion-item.clear-item { color: #e84b8a; font-weight: 500; justify-content: center; }
+.suggestion-item.clear-item:hover { background: #fce4ef; }
+.suggestion-empty { padding: 24px 16px; text-align: center; color: #bbb; font-size: 13px; }
+.search-box { position: relative; }
+
 /* ===== 数据概览 ===== */
 .stats { background: #fff; padding: 36px 24px; }
 .stats .container { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
