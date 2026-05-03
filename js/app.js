@@ -13,6 +13,13 @@ const CATEGORIES = {
   'new-house': { name: '婚房布置', icon: '🏠', desc: '新房布置与喜庆装饰',     color1: '#ffecd2', color2: '#fcb69f' },
 };
 
+// 价格档次配置
+const PRICE_LEVELS = {
+  economy: { name: '经济实惠', label: '经济', color: '#4caf50', bg: '#e8f5e9', icon: '💚' },
+  mid:     { name: '中等价位', label: '中等', color: '#ff9800', bg: '#fff3e0', icon: '🧡' },
+  premium: { name: '高端定制', label: '高端', color: '#9c27b0', bg: '#f3e5f5', icon: '💜' },
+};
+
 const DISTRICTS = ['武昌区','汉口区','汉阳区','青山区','洪山区','江夏区','硚口区','江汉区','江岸区','东西湖区','蔡甸区','黄陂区','新洲区'];
 
 let allVendors = [];
@@ -104,6 +111,7 @@ function renderFeatured() {
 // ===== 商家卡片HTML =====
 function vendorCardHTML(v, isSubpage) {
   const cat = CATEGORIES[v.category] || {};
+  const pl = PRICE_LEVELS[v.price_level] || PRICE_LEVELS.mid;
   // 路径判断
   if (isSubpage === undefined) {
     isSubpage = location.pathname.includes('/pages/');
@@ -116,11 +124,18 @@ function vendorCardHTML(v, isSubpage) {
   const imgHTML = `<img src="${imgSrc}" alt="${v.name}" class="vendor-thumb"
     onerror="this.onerror=null;this.src='${makeCoverSVG(v)}'">`;
 
+  // 价格档次标签
+  const plBadge = `<span class="price-level-badge price-level-${v.price_level || 'mid'}">${pl.icon} ${pl.label}</span>`;
+
+  // 子分类标签
+  const subTypeTag = v.sub_type ? `<span class="vendor-tag vendor-tag-sub">${v.sub_type}</span>` : '';
+
   return `
     <a href="${detailPath}?id=${v.id}" class="vendor-card">
       <div class="vendor-img-wrap">
         ${imgHTML}
         <div class="vendor-cat-badge">${cat.name || v.category || ''}</div>
+        <div class="vendor-price-badge">${plBadge}</div>
       </div>
       <div class="vendor-body">
         <div class="vendor-name">${v.verified ? '<span class="verified-icon">✓</span>' : ''} ${v.name}</div>
@@ -128,7 +143,7 @@ function vendorCardHTML(v, isSubpage) {
           <span class="vendor-rating">★ ${v.rating}<em>（${v.reviews}条评价）</em></span>
           <span class="vendor-district-tag">📍 ${v.district}</span>
         </div>
-        ${v.tags ? `<div class="vendor-tags">${v.tags.map(t => `<span class="vendor-tag">${t}</span>`).join('')}</div>` : ''}
+        ${v.tags ? `<div class="vendor-tags">${subTypeTag}${v.tags.map(t => `<span class="vendor-tag">${t}</span>`).join('')}</div>` : (subTypeTag ? `<div class="vendor-tags">${subTypeTag}</div>` : '')}
         <div class="vendor-price">${v.price}</div>
       </div>
     </a>
@@ -344,11 +359,17 @@ function searchVendors(keyword, limit) {
 }
 
 // ===== 列表页逻辑 =====
+let currentSubType = '';
+
 async function loadCategoryPage() {
   const params = new URLSearchParams(location.search);
   const cat = params.get('cat') || '';
   const district = params.get('district') || '';
   const q = params.get('q') || '';
+  const price = params.get('price') || '';
+  const subtype = params.get('subtype') || '';
+
+  currentSubType = subtype;
 
   const catInfo = CATEGORIES[cat];
   const h1 = document.getElementById('page-title');
@@ -358,17 +379,74 @@ async function loadCategoryPage() {
 
   const catSelect = document.getElementById('filter-cat');
   const distSelect = document.getElementById('filter-district');
+  const priceSelect = document.getElementById('filter-price');
   if (catSelect) catSelect.value = cat;
   if (distSelect) distSelect.value = district;
+  if (priceSelect) priceSelect.value = price;
 
   await loadVendors();
-  renderVendorList({ cat, district, q });
+
+  // 渲染子分类标签栏
+  renderSubTypeBar(cat, subtype);
+
+  renderVendorList({ cat, district, q, price, subtype });
 }
 
-function renderVendorList({ cat, district, q } = {}) {
+function renderSubTypeBar(cat, activeSubType) {
+  const bar = document.getElementById('sub-type-bar');
+  if (!bar) return;
+
+  if (!cat) {
+    bar.style.display = 'none';
+    return;
+  }
+
+  // 收集该分类下的所有 sub_type
+  const subTypes = [...new Set(allVendors.filter(v => v.category === cat && v.sub_type).map(v => v.sub_type))].sort();
+
+  if (subTypes.length === 0) {
+    bar.style.display = 'none';
+    return;
+  }
+
+  bar.style.display = 'flex';
+
+  // 保留第一个 span（"风格："标签）
+  let html = bar.querySelector('span').outerHTML;
+
+  // "全部"按钮
+  html += `<button class="sub-type-btn ${!activeSubType ? 'active' : ''}" onclick="selectSubType('')">全部</button>`;
+
+  subTypes.forEach(st => {
+    html += `<button class="sub-type-btn ${activeSubType === st ? 'active' : ''}" onclick="selectSubType('${escapeHtml(st)}')">${st}</button>`;
+  });
+
+  bar.innerHTML = html;
+}
+
+function selectSubType(subtype) {
+  currentSubType = subtype;
+  // 重新渲染子分类按钮状态
+  const cat = document.getElementById('filter-cat')?.value || '';
+  renderSubTypeBar(cat, subtype);
+  // 重新筛选列表（不改URL，直接刷新）
+  applyFiltersInline();
+}
+
+function applyFiltersInline() {
+  const cat = document.getElementById('filter-cat')?.value || '';
+  const district = document.getElementById('filter-district')?.value || '';
+  const q = document.getElementById('filter-q')?.value || '';
+  const price = document.getElementById('filter-price')?.value || '';
+  renderVendorList({ cat, district, q, price, subtype: currentSubType });
+}
+
+function renderVendorList({ cat, district, q, price, subtype } = {}) {
   let list = allVendors;
   if (cat) list = list.filter(v => v.category === cat);
   if (district) list = list.filter(v => v.district === district);
+  if (price) list = list.filter(v => v.price_level === price);
+  if (subtype) list = list.filter(v => v.sub_type === subtype);
   if (q) {
     const kw = q.toLowerCase();
     list = list.filter(v =>
@@ -376,7 +454,8 @@ function renderVendorList({ cat, district, q } = {}) {
       (v.tags||[]).some(t => t.toLowerCase().includes(kw)) ||
       (v.desc||'').toLowerCase().includes(kw) ||
       (v.district||'').includes(kw) ||
-      (v.address||'').toLowerCase().includes(kw)
+      (v.address||'').toLowerCase().includes(kw) ||
+      (v.sub_type||'').toLowerCase().includes(kw)
     );
     // 保存搜索历史
     saveSearchHistory(q);
@@ -410,10 +489,13 @@ function applyFilters() {
   const cat = document.getElementById('filter-cat')?.value || '';
   const district = document.getElementById('filter-district')?.value || '';
   const q = document.getElementById('filter-q')?.value || '';
+  const price = document.getElementById('filter-price')?.value || '';
   const params = [];
   if (cat) params.push('cat=' + encodeURIComponent(cat));
   if (district) params.push('district=' + encodeURIComponent(district));
   if (q) params.push('q=' + encodeURIComponent(q));
+  if (price) params.push('price=' + encodeURIComponent(price));
+  if (currentSubType) params.push('subtype=' + encodeURIComponent(currentSubType));
   location.href = 'category.html' + (params.length ? '?' + params.join('&') : '');
 }
 
@@ -464,8 +546,11 @@ async function loadVendorDetail() {
       <div class="info-rating">★ ${v.rating}&nbsp;&nbsp;${v.reviews} 条真实评价</div>
       <div class="info-meta">📍 ${v.address}</div>
       <div class="info-meta">📞 ${v.phone}</div>
-      <div class="info-meta">🏷️ 类别：${cat.name || v.category}</div>
-      <div class="info-price">参考价格：${v.price}</div>
+      <div class="info-meta">🏷️ 类别：${cat.name || v.category}${v.sub_type ? ' · ' + v.sub_type : ''}</div>
+      <div class="info-price-row">
+        <div class="info-price">参考价格：${v.price}</div>
+        ${v.price_level ? `<span class="price-level-badge price-level-${v.price_level}" style="font-size:13px;">${PRICE_LEVELS[v.price_level].icon} ${PRICE_LEVELS[v.price_level].name}</span>` : ''}
+      </div>
       <div style="margin:10px 0;">${v.tags ? v.tags.map(t => `<span class="vendor-tag">${t}</span>`).join('') : ''}</div>
       <p style="color:#666;font-size:14px;line-height:1.85;margin-top:12px;">${v.desc}</p>
       <button class="btn-contact" onclick="alert('请直接拨打电话联系商家：${v.phone}')">📞 联系商家</button>
@@ -550,6 +635,8 @@ function initSubmitForm() {
 // 暴露全局
 window.doSearch = doSearch;
 window.applyFilters = applyFilters;
+window.applyFiltersInline = applyFiltersInline;
+window.selectSubType = selectSubType;
 window.loadHomepage = loadHomepage;
 window.loadCategoryPage = loadCategoryPage;
 window.loadVendorDetail = loadVendorDetail;

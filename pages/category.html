@@ -37,32 +37,43 @@
 </section>
 
 <section class="filter-bar">
-  <div class="container" style="display:flex;gap:10px;flex-wrap:wrap;align-items:center;padding:0;">
-    <select id="filter-cat" class="search-select" onchange="applyFilters()">
-      <option value="">全部分类</option>
-      <option value="planner">婚庆策划</option>
-      <option value="photography">婚庆摄影</option>
-      <option value="makeup">婚礼化妆</option>
-      <option value="venue">婚礼场地</option>
-      <option value="hotel">婚宴酒店</option>
-      <option value="host">婚礼主持</option>
-      <option value="dress">婚纱礼服</option>
-      <option value="flower">婚礼花艺</option>
-      <option value="new-house">婚房布置</option>
-    </select>
-    <select id="filter-district" class="search-select" onchange="applyFilters()">
-      <option value="">全部区域</option>
-      <option value="江汉区">江汉区</option>
-      <option value="武昌区">武昌区</option>
-      <option value="洪山区">洪山区</option>
-      <option value="江岸区">江岸区</option>
-      <option value="汉阳区">汉阳区</option>
-      <option value="硚口区">硚口区</option>
-      <option value="东西湖区">东西湖区</option>
-    </select>
-    <input type="text" id="filter-q" class="search-input" placeholder="搜索商家名称..." onkeyup="if(event.key==='Enter')applyFilters()">
-    <button class="btn-search" onclick="applyFilters()">筛选</button>
-    <span id="result-count" style="margin-left:auto;font-size:13px;color:#888;"></span>
+  <div class="container" style="display:flex;flex-direction:column;gap:12px;padding:0;">
+    <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center;">
+      <select id="filter-cat" class="search-select" onchange="applyFilters()">
+        <option value="">全部分类</option>
+        <option value="planner">婚庆策划</option>
+        <option value="photography">婚庆摄影</option>
+        <option value="makeup">婚礼化妆</option>
+        <option value="venue">婚礼场地</option>
+        <option value="hotel">婚宴酒店</option>
+        <option value="host">婚礼主持</option>
+        <option value="dress">婚纱礼服</option>
+        <option value="flower">婚礼花艺</option>
+        <option value="new-house">婚房布置</option>
+      </select>
+      <select id="filter-district" class="search-select" onchange="applyFilters()">
+        <option value="">全部区域</option>
+        <option value="江汉区">江汉区</option>
+        <option value="武昌区">武昌区</option>
+        <option value="洪山区">洪山区</option>
+        <option value="江岸区">江岸区</option>
+        <option value="汉阳区">汉阳区</option>
+        <option value="硚口区">硚口区</option>
+        <option value="东西湖区">东西湖区</option>
+      </select>
+      <select id="filter-price" class="search-select" onchange="applyFilters()">
+        <option value="">全部价位</option>
+        <option value="economy">经济实惠</option>
+        <option value="mid">中等价位</option>
+        <option value="premium">高端定制</option>
+      </select>
+      <input type="text" id="filter-q" class="search-input" placeholder="搜索商家名称..." onkeyup="if(event.key==='Enter')applyFilters()">
+      <button class="btn-search" onclick="applyFilters()">筛选</button>
+      <span id="result-count" style="margin-left:auto;font-size:13px;color:#888;"></span>
+    </div>
+    <div id="sub-type-bar" style="display:none;gap:8px;flex-wrap:wrap;">
+      <span style="font-size:12px;color:#888;line-height:28px;">风格：</span>
+    </div>
   </div>
 </section>
 
