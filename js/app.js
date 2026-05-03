@@ -10,6 +10,7 @@ const CATEGORIES = {
   host:        { name: '婚礼主持', icon: '🎤', desc: '专业婚礼主持人',         color1: '#a18cd1', color2: '#fbc2eb' },
   dress:       { name: '婚纱礼服', icon: '👗', desc: '新娘婚纱与礼服租赁',     color1: '#ffecd2', color2: '#fcb69f' },
   flower:      { name: '婚礼花艺', icon: '💐', desc: '婚礼鲜花布置与花艺设计', color1: '#a1c4fd', color2: '#c2e9fb' },
+  'new-house': { name: '婚房布置', icon: '🏠', desc: '新房布置与喜庆装饰',     color1: '#ffecd2', color2: '#fcb69f' },
 };
 
 const DISTRICTS = ['武昌区','汉口区','汉阳区','青山区','洪山区','江夏区','硚口区','江汉区','江岸区','东西湖区','蔡甸区','黄陂区','新洲区'];
