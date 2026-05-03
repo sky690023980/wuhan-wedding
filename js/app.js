@@ -17,6 +17,11 @@ const DISTRICTS = ['武昌区','汉口区','汉阳区','青山区','洪山区','
 
 let allVendors = [];
 
+// 获取当前页面相对根目录的前缀（用于引用 images/ 等资源）
+function getBase() {
+  return location.pathname.includes('/pages/') ? '../' : '';
+}
+
 // ===== 生成内嵌SVG封面（data URI，100%可显示，无需外网）=====
 function makeCoverSVG(v) {
   const cat = CATEGORIES[v.category] || { color1: '#fa709a', color2: '#fee140', name: '婚庆服务' };
@@ -104,19 +109,12 @@ function vendorCardHTML(v, isSubpage) {
     isSubpage = location.pathname.includes('/pages/');
   }
   const detailPath = isSubpage ? 'vendor.html' : 'pages/vendor.html';
+  const base = getBase();
 
-  // 始终用内嵌SVG作为src（100%可显示）
-  // 如有 v.image（Unsplash），在SVG基础上尝试替换为真实图片
-  const svgSrc = makeCoverSVG(v);
-  let imgHTML;
-  if (v.image) {
-    // 先展示SVG，图片加载成功后替换（避免破图）
-    imgHTML = `<img src="${v.image}" alt="${v.name}" class="vendor-thumb"
-      onerror="this.src='${svgSrc}'"
-      onload="this.style.opacity=1">`;
-  } else {
-    imgHTML = `<img src="${svgSrc}" alt="${v.name}" class="vendor-thumb">`;
-  }
+  // 图片：优先用 v.image（本地SVG/图片），否则用内嵌SVG
+  let imgSrc = v.image ? base + v.image : makeCoverSVG(v);
+  const imgHTML = `<img src="${imgSrc}" alt="${v.name}" class="vendor-thumb"
+    onerror="this.onerror=null;this.src='${makeCoverSVG(v)}'">`;
 
   return `
     <a href="${detailPath}?id=${v.id}" class="vendor-card">
@@ -433,20 +431,28 @@ async function loadVendorDetail() {
   const detail = document.getElementById('vendor-detail-content');
   if (!detail) return;
 
-  // 主图（优先Unsplash，失败用SVG）
+  const base = getBase();
+
+  // 主图（优先本地图片，失败用SVG）
   const svgSrc = makeCoverSVG(v);
-  const mainSrc = v.image || svgSrc;
+  const mainSrc = v.image ? base + v.image : svgSrc;
   const mainImgHTML = `<img src="${mainSrc}" alt="${v.name}" class="gallery-main-img" onerror="this.src='${svgSrc}'">`;
 
-  // 缩略图（用SVG变体色块）
-  const subSVGs = [1,2,3,4].map(i => {
-    const vv = Object.assign({}, v, { id: v.id * 10 + i });
-    // 微调颜色
-    return makeCoverSVG(vv);
-  });
-  const subImgsHTML = subSVGs.map((src, i) =>
-    `<img src="${src}" alt="${v.name}案例${i+1}" class="gallery-sub-img">`
-  ).join('');
+  // 缩略图（优先 v.gallery，否则用SVG变体色块）
+  let subImgsHTML;
+  if (v.gallery && v.gallery.length > 0) {
+    subImgsHTML = v.gallery.map((src, i) =>
+      `<img src="${base + src}" alt="${v.name}案例${i+1}" class="gallery-sub-img" onerror="this.onerror=null;this.src='${makeCoverSVG(Object.assign({}, v, { id: v.id * 10 + i }))}'">`
+    ).join('');
+  } else {
+    const subSVGs = [1,2,3].map(i => {
+      const vv = Object.assign({}, v, { id: v.id * 10 + i });
+      return makeCoverSVG(vv);
+    });
+    subImgsHTML = subSVGs.map((src, i) =>
+      `<img src="${src}" alt="${v.name}案例${i+1}" class="gallery-sub-img">`
+    ).join('');
+  }
 
   detail.innerHTML = `
     <div class="vendor-gallery">

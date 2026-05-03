@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600">
+<defs>
+<linearGradient id="bg_26_0" x1="0%" y1="0%" x2="100%" y2="100%">
+<stop offset="0%" stop-color="#d1c4e9"/>
+<stop offset="100%" stop-color="#ede7f6"/>
+</linearGradient>
+<radialGradient id="circle_26_0" cx="50%" cy="50%">
+<stop offset="0%" stop-color="#673ab7" stop-opacity="0.3"/>
+<stop offset="100%" stop-color="#673ab7" stop-opacity="0"/>
+</radialGradient>
+<filter id="shadow_26_0"><feDropShadow dx="2" dy="2" stdDeviation="3" flood-opacity="0.2"/></filter>
+</defs>
+<rect width="800" height="600" fill="url(#bg_26_0)"/>
+<circle cx="650" cy="100" r="180" fill="#673ab7" opacity="0.08"/>
+<circle cx="100" cy="500" r="120" fill="#673ab7" opacity="0.06"/>
+<circle cx="400" cy="300" r="200" fill="#673ab7" opacity="0.04"/>
+<circle cx="750" cy="500" r="100" fill="#673ab7" opacity="0.07"/>
+<line x1="50" y1="150" x2="250" y2="150" stroke="#673ab7" stroke-width="1" opacity="0.3"/>
+<line x1="550" y1="450" x2="750" y2="450" stroke="#673ab7" stroke-width="1" opacity="0.3"/>
+<circle cx="400" cy="240" r="80" fill="rgba(255,255,255,0.25)"/>
+<circle cx="400" cy="240" r="60" fill="rgba(255,255,255,0.35)"/>
+<text x="400" y="255" font-size="50" text-anchor="middle" fill="white" font-weight="bold" font-family="serif">💄</text>
+<text x="400" y="370" font-size="36" text-anchor="middle" fill="white" font-weight="bold" font-family="PingFang SC, Microsoft YaHei, sans-serif">诗悦婚礼化妆</text>
+<text x="400" y="415" font-size="18" text-anchor="middle" fill="white" opacity="0.85" font-family="PingFang SC, Microsoft YaHei, sans-serif">化妆 · 武昌区</text>
+<text x="400" y="460" font-size="22" text-anchor="middle" fill="#FFD700" font-family="sans-serif">★ ★ ★ ★ ☆</text>
+<text x="400" y="490" font-size="16" text-anchor="middle" fill="white" opacity="0.8" font-family="sans-serif">4.8 分</text>
+<rect x="215" y="520" width="70" height="28" rx="14" fill="rgba(255,255,255,0.3)"/>
+<text x="250" y="538" font-size="13" text-anchor="middle" fill="white" font-family="PingFang SC, sans-serif">性价比高</text>
+<rect x="315" y="520" width="70" height="28" rx="14" fill="rgba(255,255,255,0.3)"/>
+<text x="350" y="538" font-size="13" text-anchor="middle" fill="white" font-family="PingFang SC, sans-serif">一人跟妆</text>
+<rect x="415" y="520" width="70" height="28" rx="14" fill="rgba(255,255,255,0.3)"/>
+<text x="450" y="538" font-size="13" text-anchor="middle" fill="white" font-family="PingFang SC, sans-serif">多套造型</text>
+<text x="400" y="580" font-size="12" text-anchor="middle" fill="white" opacity="0.4" font-family="sans-serif">武汉婚庆目录 · 武汉婚庆服务商</text>
+</svg>
